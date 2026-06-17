@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Pizzaria_Godoy.Components;
 using Pizzaria_Godoy.Components.Account;
 using Pizzaria_Godoy.Data;
+using Pizzaria_Godoy.Repository;
+using Pizzaria_Godoy.Repository.IRespository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,7 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 builder.Services.AddAuthentication(options =>
     {
