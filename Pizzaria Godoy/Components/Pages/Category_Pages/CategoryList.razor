@@ -14,14 +14,15 @@ else
         <div class="card-header bg-black bg-gradient m-lg-0 py-3">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white py-2">Category List</h2>
+                    <h2 class="text-white py-2">Lista de categorias</h2>
                 </div>
             </div>
         </div>
         <div class="card-body p-4">
             <div class=" row pb-3">
                 <div class="col-12 text-end">
-                    <button class="btn btn-lg btn-secondary" style="width: 250px;">Adicionar categoria</button>
+                    <a href="category/create" class="btn btn-lg btn-secondary" style="width: 250px;">
+                       <i class="bi bi-plus-square"></i> Adicionar categoria</a>
                 </div>
             </div>
             @if(Categories.Any())
@@ -42,7 +43,13 @@ else
                                     @obj.Name
                                 </td>
                                 <td>
-                                    Buttons
+                                    <a href="@($"category/update/{obj.Id}")" class="btn btn-primary">
+                                        <i class="bi bi-pencil-square"></i>Editar
+                                    </a>
+                                   <button class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                  </button>
+
                                 </td>
                             </tr>
                         }

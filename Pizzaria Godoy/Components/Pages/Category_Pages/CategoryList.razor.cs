@@ -17,8 +17,8 @@ namespace Pizzaria_Godoy.Components.Pages.Category_Pages
         {
             if (firstRender)
             {
-                IsProcessing = true;
-                await LoadCategories();
+            
+                await LoadCategory();
                 IsProcessing = false;
                 StateHasChanged();
                 
@@ -26,7 +26,7 @@ namespace Pizzaria_Godoy.Components.Pages.Category_Pages
             //return base.OnAfterRenderAsync(firstRender);
         }
 
-        private async Task LoadCategories()
+        private async Task LoadCategory()
         {
 
             Categories = await _categoryRepository.GetAllAsync();
