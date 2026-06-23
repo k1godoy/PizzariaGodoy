@@ -48,9 +48,9 @@ namespace Pizzaria_Godoy.Repository
             var obj = await _db.Categories.FirstOrDefaultAsync(u => u.Id == id);
             if (obj != null)
             {
-                return new Category();
+                return obj;
             }
-            return obj;
+            return new Category();
         }
         public async Task <IEnumerable<Category>> GetAllAsync()
         {
