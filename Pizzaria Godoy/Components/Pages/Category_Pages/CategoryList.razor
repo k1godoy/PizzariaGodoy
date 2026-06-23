@@ -1,5 +1,10 @@
 ﻿@page "/category"
 @inject ICategoryRepository _categoryRepository
+@inject IJSRuntime _JS
+
+
+<Pizzaria_Godoy.Components.Shared.BsModal OnModalConfirmation="ConfirmDelete_Click"></Pizzaria_Godoy.Components.Shared.BsModal>
+
 @if (IsProcessing)
 {
 
@@ -46,7 +51,7 @@ else
                                     <a href="@($"category/update/{obj.Id}")" class="btn btn-primary">
                                         <i class="bi bi-pencil-square"></i>Editar
                                     </a>
-                                   <button class="btn btn-danger">
+                                   <button class="btn btn-danger" @onclick = "()=>HandleDelete(obj.Id)">
                                         <i class="bi bi-trash"></i> Delete
                                   </button>
 
