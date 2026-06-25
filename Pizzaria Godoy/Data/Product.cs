@@ -16,6 +16,5 @@ namespace Pizzaria_Godoy.Data
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
         public string? ImageUrl { get; set; }
-
     }
 }
