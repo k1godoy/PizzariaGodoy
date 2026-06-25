@@ -1,20 +1,20 @@
 ﻿<div class="modal fade" id="bsConfirmationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel"> Deseja deletar essa categoria?</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> @Title</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-               
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" 
-                @onclick="() => ConfirmationClicked(false)">Fechar</button>
-                
-                <button type="button" class="btn btn-danger"  
-                @onclick="() => ConfirmationClicked(true)">Confirmar</button>
-             
+                <button type="button" class="btn btn-lg btn-secondary" data-bs-dismiss="modal"
+                        @onclick="() => ConfirmationClicked(false)" style="width:100px;">
+                    Fechar
+                </button>
+
+                <button type="button" class="btn btn-lg @ButtonBootstrapStyle"
+                        @onclick="() => ConfirmationClicked(true)" style="width:100px;">
+                    @ButtonText
+                </button>
             </div>
         </div>
     </div>
@@ -23,6 +23,15 @@
 @code{
     [Parameter]
     public EventCallback<bool> OnModalConfirmation { get; set; }
+
+    [Parameter]
+    public string Title { get; set; } = "Por favor, confirmar";
+
+    [Parameter]
+    public string ButtonBootstrapStyle { get; set; } = "btn-primary";
+
+    [Parameter]
+    public string ButtonText { get; set; } = "Confirmar";
 
     private async Task ConfirmationClicked(bool value)
     {

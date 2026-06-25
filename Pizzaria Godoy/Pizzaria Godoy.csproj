@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Services\ViewModels\" />
+    <Folder Include="wwwroot\images\product\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 

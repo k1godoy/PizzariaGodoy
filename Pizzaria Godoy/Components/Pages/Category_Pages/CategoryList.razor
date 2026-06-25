@@ -3,13 +3,19 @@
 @inject IJSRuntime _JS
 
 
-<Pizzaria_Godoy.Components.Shared.BsModal OnModalConfirmation="ConfirmDelete_Click"></Pizzaria_Godoy.Components.Shared.BsModal>
+<BsModal OnModalConfirmation="ConfirmDelete_Click"
+    ButtonBootstrapStyle="btn-danger"
+    ButtonText="Delete"
+    Title="Tem certeza que deseja deletar a categoria?">
+
+
+</BsModal>
 
 @if (IsProcessing)
 {
 
     <div class="position-absolute w-100 h-100 d-flex flex-column align-items-center bg-white justify-content-center">
-      <img src="/images/loading.gif" alt="Logo"/>
+      <img src="/images/Loading_icon.gif" alt="Logo"/>
     </div>
     
 }
