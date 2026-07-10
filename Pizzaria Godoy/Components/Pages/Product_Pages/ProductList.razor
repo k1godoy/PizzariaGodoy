@@ -1,12 +1,12 @@
-﻿@page "/category"
-@inject ICategoryRepository _categoryRepository
+﻿@page "/product"
+@inject IProductRepository _productRepository
 @inject IJSRuntime _JS
 
 
 <BsModal OnModalConfirmation="ConfirmDelete_Click"
     ButtonBootstrapStyle="btn-danger"
     ButtonText="Delete"
-    Title="Tem certeza que deseja deletar a categoria?">
+    Title="Tem certeza que deseja deletar o produto?">
 
 
 </BsModal>
@@ -25,18 +25,18 @@ else
         <div class="card-header bg-black bg-gradient m-lg-0 py-3">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white py-2">Lista de Categorias</h2>
+                    <h2 class="text-white py-2"> Lista de Produtos</h2>
                 </div>
             </div>
         </div>
         <div class="card-body p-4">
             <div class=" row pb-3">
                 <div class="col-12 text-end">
-                    <a href="category/create" class="btn btn-lg btn-secondary" style="width: 250px;">
-                       <i class="bi bi-plus-square"></i> Adicionar categoria</a>
+                    <a href="product/create" class="btn btn-lg btn-secondary" style="width: 250px;">
+                       <i class="bi bi-plus-square"></i> Adicionar Produtos</a>
                 </div>
             </div>
-            @if(Categories.Any())
+            @if(Product.Any())
             {
                 <table class="table table-bordered table-striped">
 
@@ -47,14 +47,14 @@ else
                         </tr>
                     </thread>
                     <tbody>
-                        @foreach (var obj in Categories)
+                        @foreach (var obj in Product)
                         {
                             <tr>
                                 <td>
                                     @obj.Name
                                 </td>
                                 <td>
-                                    <a href="@($"category/update/{obj.Id}")" class="btn btn-primary">
+                                    <a href="@($"product/update/{obj.Id}")" class="btn btn-primary">
                                         <i class="bi bi-pencil-square"></i>Editar
                                     </a>
                                    <button class="btn btn-danger" @onclick = "()=>HandleDelete(obj.Id)">
