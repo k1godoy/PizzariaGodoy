@@ -4,6 +4,7 @@
 @inject ICategoryRepository _categoryRepository
 @inject NavigationManager _navigationManager
 @inject IJSRuntime _jsRuntime
+@inject IWebHostEnvironment _webHostEnvironment
 
 @if (IsProcessing)
 {
@@ -122,10 +123,17 @@ else
     
     
     @*Imagem*@
-    
+
     private string? _directoryPath { get; set;}
-    private bool _isImageLoading = false;
     private bool IsProcessing { get; set; } = true;
+
+    protected override Task OnInitializedAsync()
+    {
+
+        _directoryPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "product");
+        return base.OnInitializedAsync();
+    }
+
 
     protected override async Task OnAfterRenderAsync (bool firstRender)
     { 
@@ -142,7 +150,8 @@ else
     private async Task LoadProductAndCategoryList()
     {
 
-        if (Id > 0)    @*Lance do botao ser criar ou editar*@
+        if (Id > 0)    
+    @*Lance do botao ser criar ou editar*@
         {
             Product = await _productRepository.GetAsync(Id);
         }
@@ -170,6 +179,21 @@ else
     }
     private async Task LoadFiles(InputFileChangeEventArgs e)
     {
+        IsProcessing = true;
+        var file = e.File;
+        FileInfo fileInfo = new(file.Name);
+        var newFileName = $"{Guid.NewGuid()}{fileInfo.Extension}";
+
+        if (!Directory.Exists(_directoryPath));
+        {
+            Directory.CreateDirectory(_directoryPath);
+        }
+        var path = Path.Combine(_directoryPath, newFileName);
+
+        await using FileStream fileStream = new(path, FileMode.Create);
+        await file.OpenReadStream(file.Size).CopyToAsync(fileStream);
+
+        IsProcessing = false;  
 
     }
 }
